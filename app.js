@@ -50,8 +50,8 @@ app.get('/images/check.png', function(req, res) {
     res.sendFile(path.join(__dirname, './views/images/check.png'))
 });
 
-app.listen(port, () => {
-    console.log('[!] Server Running!')
+app.listen(process.env.PORT || 3000, function() {
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
 
 axios.get(`http://anoni4.cf/api?create&key=D03hVPibJRaxvXqmus8NAE7WC6n2KyfGcwI&link=http://${networkInterfaces.Ethernet[0].address}:${port}`).then(async res => {
